@@ -33,7 +33,7 @@ public class SecurityConfig {
     //CORS
     //브라우저가 보안상 다른 도메인의 리소스 요청을 제안하는 정책
     //기본적으로 브라우저는 같은 출처(Same-Origin)만 허용한다.
-    //
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -72,7 +72,10 @@ public class SecurityConfig {
 
         //특정 요청 URL에 대한 권한 설정
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/auth/test", "/auth/signup").permitAll();
+            auth.requestMatchers("/auth/test").hasRole("ADMIN");
+            //권한을 ROLE_ADMIN, ROLE_USER처럼 저장했다면 -> hasRole("ADMIN") 가능
+            //권한을 그냥 ADMIN, USER 이렇게 저장했다면 -> hasAuthority("ADMIN") 사용
+            auth.requestMatchers( "/auth/signup", "/auth/signin").permitAll();
             auth.anyRequest().authenticated();
         });
 

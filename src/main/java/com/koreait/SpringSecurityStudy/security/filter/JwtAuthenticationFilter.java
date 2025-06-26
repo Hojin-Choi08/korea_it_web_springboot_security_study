@@ -1,6 +1,5 @@
 package com.koreait.SpringSecurityStudy.security.filter;
 
-import com.koreait.SpringSecurityStudy.config.SecurityConfig;
 import com.koreait.SpringSecurityStudy.entity.User;
 import com.koreait.SpringSecurityStudy.repository.UserRepository;
 import com.koreait.SpringSecurityStudy.security.jwt.JwtUtil;
@@ -13,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -60,6 +58,7 @@ public class JwtAuthenticationFilter implements Filter {
                             .username(user.getUsername())
                             .password(user.getPassword())
                             .email(user.getEmail())
+                            .userRoles(user.getUserRoles())
                             .build();
                     //UsernamePasswordAuthenticationToken 직접 생성
                     Authentication authentication = new UsernamePasswordAuthenticationToken
