@@ -14,4 +14,8 @@ public class OAuth2UserRepository {
     public OAuth2User getOAuth2UserByProviderAndProviderUserId(String provider, String provideruserId) {
         return oAuth2UserMapper.getOAuth2UserByProviderAndProviderUserId(provider, provideruserId);
     }
+
+    public int insertOAuth2User(OAuth2User oAuth2User) {
+        return oAuth2UserMapper.insertOAuth2User(oAuth2User);
+    }
 }
