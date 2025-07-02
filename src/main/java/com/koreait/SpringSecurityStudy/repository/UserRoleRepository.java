@@ -18,4 +18,11 @@ public class UserRoleRepository {
                 ? Optional.empty() : Optional.of(userRole);
     }
 
+    public Optional<UserRole> getUserRoleByUserIdAndRoleId(Integer userId, Integer roleId) {
+        return userRoleMapper.getUserRoleByUserIdAndRoleId(userId, roleId);
+    }
+
+    public int updateRoleId(Integer userId, Integer userRoleId) {
+        return userRoleMapper.updateRoleId(userId, userRoleId);
+    }
 }
